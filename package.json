@@ -1,0 +1,37 @@
+{
+  "name": "gulp-process-file-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "file-exists": "^2.0.0",
+    "jsonfile": "^2.4.0",
+    "mkpath": "^1.0.0",
+    "path": "^0.12.7",
+    "through2": "^2.0.0"
+  },
+  "keywords": [
+    "asset",
+    "assets",
+    "gulp plugin",
+    "static",
+    "manifest",
+    "map",
+    "log",
+    "process"
+  ],
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinCK/gulp-process-file-log.git"
+  },
+  "author": "Igor Ognichenko <ognichenko.igor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobinCK/gulp-process-file-log/issues"
+  },
+  "homepage": "https://github.com/RobinCK/gulp-process-file-log#readme"
+}
