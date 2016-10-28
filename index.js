@@ -4,8 +4,9 @@ var mkpath = require('mkpath');
 var fileExists = require('file-exists');
 var path = require('path');
 
-module.exports = function (logFile) {
+module.exports = function (logFile, basenamePrefix) {
     logFile = logFile || './log.json';
+    basenamePrefix = basenamePrefix || '';
     var manifest = [];
 
     return through.obj(
@@ -16,7 +17,7 @@ module.exports = function (logFile) {
                 return;
             }
 
-            var asset = file.basename;
+            var asset = basenamePrefix + file.basename;
 
             if (manifest.indexOf(asset) === -1) {
                 manifest.push(asset);
