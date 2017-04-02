@@ -10,6 +10,9 @@
     "path": "^0.12.7",
     "through2": "^2.0.0"
   },
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  },
   "keywords": [
     "asset",
     "assets",
@@ -20,9 +23,11 @@
     "log",
     "process"
   ],
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/eslint .",
+    "patch": "npm version patch && git push origin master --follow-tags && npm publish",
+    "minor": "npm version minor && git push origin master --follow-tags && npm publish",
+    "major": "npm version major && git push origin master --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
