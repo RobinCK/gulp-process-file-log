@@ -10,29 +10,32 @@ module.exports = function (logFile, basenamePrefix) {
   var manifest = [];
 
   return through.obj(
-        function (file, enc, cb) {
-          if (!file.path) {
-            cb();
+    function (file, enc, cb) {
+      if (!file.path) {
+        cb();
 
-            return;
-          }
+        return;
+      }
 
-          var asset = basenamePrefix + file.basename;
+      var asset = basenamePrefix + file.basename;
 
-          if (manifest.indexOf(asset) === -1) {
-            manifest.push(asset);
-          }
+      if (manifest.indexOf(asset) === -1) {
+        manifest.push(asset);
+        cb(null, file);
 
-          cb(null, file);
-        },
-        function (cb) {
-          if (!fileExists(path.dirname(logFile))) {
-            mkpath.sync(path.dirname(logFile));
-          }
+        return;
+      }
 
-          jsonfile.writeFile(logFile, manifest, {spaces: 2}, function (err) {
-            cb(err);
-          });
-        }
+      cb();
+    },
+    function (cb) {
+      if (!fileExists(path.dirname(logFile))) {
+        mkpath.sync(path.dirname(logFile));
+      }
+
+      jsonfile.writeFileSync(logFile, manifest, {spaces: 2}, function (err) {
+        cb(err);
+      });
+    }
     );
 };
