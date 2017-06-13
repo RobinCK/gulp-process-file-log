@@ -3,11 +3,11 @@ var jsonfile = require('jsonfile');
 var mkpath = require('mkpath');
 var fileExists = require('file-exists');
 var path = require('path');
+var manifest = [];
 
 module.exports = function (logFile, basenamePrefix) {
   logFile = logFile || './log.json';
   basenamePrefix = basenamePrefix || '';
-  var manifest = [];
 
   return through.obj(
     function (file, enc, cb) {
@@ -21,13 +21,11 @@ module.exports = function (logFile, basenamePrefix) {
 
       if (manifest.indexOf(asset) === -1) {
         manifest.push(asset);
-        cb(null, file);
-
-        return;
       }
 
-      cb();
+      cb(null, file);
     },
+
     function (cb) {
       if (!fileExists(path.dirname(logFile))) {
         mkpath.sync(path.dirname(logFile));
@@ -36,6 +34,8 @@ module.exports = function (logFile, basenamePrefix) {
       jsonfile.writeFileSync(logFile, manifest, {spaces: 2}, function (err) {
         cb(err);
       });
+
+      cb();
     }
-    );
+  );
 };
