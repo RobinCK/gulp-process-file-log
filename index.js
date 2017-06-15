@@ -3,11 +3,11 @@ var jsonfile = require('jsonfile');
 var mkpath = require('mkpath');
 var fileExists = require('file-exists');
 var path = require('path');
-var manifest = [];
 
 module.exports = function (logFile, basenamePrefix) {
   logFile = logFile || './log.json';
   basenamePrefix = basenamePrefix || '';
+  var manifest = [];
 
   return through.obj(
     function (file, enc, cb) {
